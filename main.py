@@ -38,6 +38,16 @@ regressors = [(LinearRegression(), "red"),
 plt.figure()
 plt.scatter(X_train,y_train, s=30,edgecolor ="black", c="orange",label = "data" )
 
+for regressor, color in regressors:
+    regressor.fit(X_train,y_train)#fit model
+    y_pred = regressor.predict(X_axis)#predict
+    reg_name = str(regressor)[:-2]#get reg. name
+    plt.plot(X_axis,y_pred, color = color, label= reg_name, linewidth = 2)#plot the predictions
+    print(f'{reg_name} MSE: {mean_squared_error(regressor.predict(X_test),y_test):.3f}')#plot names and MSE
+
+
+
+
 plt.xlabel("data")
 plt.ylabel("target")
 plt.title("Regression Models Comparison")
